@@ -26,9 +26,14 @@ class NewsProvider extends ChangeNotifier {
     try {
       setIsLoading = true;
       // coba ambil data dari api
+      print('test hallo');
       final url = 'https://7a26-2404-c0-1c20-00-98a-183.ngrok-free.app';
 
-      var response = await http.get(Uri.parse(url));
+      var response = await http.get(
+        Uri.parse(url),
+        headers: {'ngrok-skip-browser-warning': 'any'},
+      );
+      print('response: ${response.body}');
 
       await Future.delayed(Duration(seconds: 2));
 
