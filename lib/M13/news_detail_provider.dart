@@ -12,8 +12,16 @@ class NewsDetailProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  set setIsLoading(val) {
+    _isLoading = val;
+    notifyListeners();
+  }
+
   getNewsDetail(String id) async {
     try {
+      setIsLoading = true;
       final url =
           'https://7a26-2404-c0-1c20-00-98a-183.ngrok-free.app/detail/$id';
 
@@ -30,6 +38,9 @@ class NewsDetailProvider extends ChangeNotifier {
         print('gagal');
       }
     } catch (e) {
-    } finally {}
+      setIsLoading = false;
+    } finally {
+      setIsLoading = false;
+    }
   }
 }
