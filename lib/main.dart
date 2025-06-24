@@ -27,6 +27,8 @@ void main() {
         // tambahkan provider lain
         ChangeNotifierProvider(create: (context) => TokoProvider()),
         ChangeNotifierProvider(create: (context) => Toko2Provider()),
+
+        // provider M13
         ChangeNotifierProvider(create: (context) => NewsProvider()),
         ChangeNotifierProvider(create: (context) => NewsDetailProvider()),
       ],
