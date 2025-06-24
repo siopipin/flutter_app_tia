@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/M13/news_add_screen.dart';
+import 'package:flutter_app/M13/news_detail_screen.dart';
 import 'package:flutter_app/M13/news_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,18 @@ class _NewsScreenState extends State<NewsScreen> {
                 itemCount: watchProvider.dataBerita.data!.length,
                 itemBuilder: (context, i) {
                   return ListTile(
+                    onTap:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) => NewDetailScreen(
+                                  id:
+                                      watchProvider.dataBerita.data![i].id
+                                          .toString(),
+                                ),
+                          ),
+                        ),
                     trailing: Image.network('https://picsum.photos/0'),
                     title: Text(watchProvider.dataBerita.data![i].judul ?? '-'),
                     subtitle: Text(
