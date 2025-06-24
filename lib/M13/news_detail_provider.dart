@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/M13/news_detail_model.dart';
 import 'package:http/http.dart' as http;
@@ -19,6 +21,14 @@ class NewsDetailProvider extends ChangeNotifier {
         Uri.parse(url),
         headers: {'ngrok-skip-browser-warning': 'any'},
       );
+
+      if (response.statusCode == 200) {
+        var dataTmp = json.decode(response.body);
+        var dataModel = NewsDetailModel.fromJson(dataTmp);
+        setDataDetailBerita = dataModel;
+      } else {
+        print('gagal');
+      }
     } catch (e) {
     } finally {}
   }
