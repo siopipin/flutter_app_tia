@@ -12,6 +12,7 @@ import 'package:flutter_app/M12/toko_provider.dart';
 import 'package:flutter_app/M12/toko_screen.dart';
 import 'package:flutter_app/M12a/toko2_provider.dart';
 import 'package:flutter_app/M12a/toko2_screen.dart';
+import 'package:flutter_app/M13/news_detail_provider.dart';
 import 'package:flutter_app/M13/news_provider.dart';
 import 'package:flutter_app/M13/news_screen.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,7 @@ void main() {
         ChangeNotifierProvider(create: (context) => TokoProvider()),
         ChangeNotifierProvider(create: (context) => Toko2Provider()),
         ChangeNotifierProvider(create: (context) => NewsProvider()),
+        ChangeNotifierProvider(create: (context) => NewsDetailProvider()),
       ],
       child: const MyApp(),
     ),
