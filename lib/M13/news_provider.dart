@@ -26,7 +26,7 @@ class NewsProvider extends ChangeNotifier {
     try {
       setIsLoading = true;
       // coba ambil data dari api
-      final url = 'http://localhost:3000/';
+      final url = 'https://7a26-2404-c0-1c20-00-98a-183.ngrok-free.app';
 
       var response = await http.get(Uri.parse(url));
 
@@ -55,7 +55,7 @@ class NewsProvider extends ChangeNotifier {
   postNews({String? judul, String? desc, String? tanggal}) async {
     try {
       print('test hallo');
-      final url = 'http://localhost:3000/';
+      final url = 'https://7a26-2404-c0-1c20-00-98a-183.ngrok-free.app';
       var body = json.encode({
         "judul": judul,
         "deskripsi": desc,
