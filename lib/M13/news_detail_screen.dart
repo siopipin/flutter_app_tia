@@ -22,9 +22,23 @@ class _NewDetailScreenState extends State<NewDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: ListView(children: [
-
+    final watchProvider = context.watch<NewsDetailProvider>();
+    return Scaffold(
+      appBar: AppBar(),
+      body: ListView(
+        children: [
+          watchProvider.isLoading
+              ? Center(child: CircularProgressIndicator())
+              : Column(
+                children: [
+                  // title
+                  Text(watchProvider.dataDetailBerita.data!.judul ?? '-'),
+                  // desc
+                  Text(watchProvider.dataDetailBerita.data!.deskripsi ?? '-'),
+                ],
+              ),
         ],
-      ));
+      ),
+    );
   }
 }
