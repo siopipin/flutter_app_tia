@@ -15,6 +15,7 @@ import 'package:flutter_app/M12a/toko2_screen.dart';
 import 'package:flutter_app/M13/news_detail_provider.dart';
 import 'package:flutter_app/M13/news_provider.dart';
 import 'package:flutter_app/M13/news_screen.dart';
+import 'package:flutter_app/M14a/home_app_screen.dart';
 import 'package:flutter_app/M14a/signin_app_screen.dart';
 import 'package:flutter_app/M14b/rumah_screen.dart';
 import 'package:provider/provider.dart';
@@ -48,6 +49,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool isUserNameValid = false;
+
+  @override
+  void initState() {
+    cekUserValid();
+    super.initState();
+  }
+
+  cekUserValid() async {
+    final prefs = await SharedPreferences.getInstance();
+    var username = prefs.getString('username');
+
+    if (username != null) {
+      setState(() {
+        isUserNameValid = true;
+      });
+    } else {
+      setState(() {
+        isUserNameValid = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,7 +80,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: RumahScreen(),
+      home: isUserNameValid ? HomeScreen() : SigninAppScreen(),
     );
   }
 }

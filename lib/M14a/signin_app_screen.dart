@@ -12,6 +12,7 @@ class SigninAppScreen extends StatefulWidget {
 class _SignInAppScreenState extends State<SigninAppScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _emailCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,10 @@ class _SignInAppScreenState extends State<SigninAppScreen> {
             TextField(
               controller: _usernameController,
               decoration: const InputDecoration(labelText: 'Username'),
+            ),
+            TextField(
+              controller: _emailCtrl,
+              decoration: const InputDecoration(labelText: 'Email'),
             ),
             TextField(
               controller: _passwordController,
@@ -44,7 +49,11 @@ class _SignInAppScreenState extends State<SigninAppScreen> {
     final prefs = await SharedPreferences.getInstance();
 
     // 2. Simpan username. Di aplikasi nyata, Anda akan memvalidasi password terlebih dahulu.
-    await prefs.setString('username', _usernameController.text);
+
+    if (_emailCtrl.text.isNotEmpty) {
+      await prefs.setString('username', _usernameController.text);
+      await prefs.setString('email', _emailCtrl.text);
+    }
 
     // 3. Navigasi ke HomeScreen
     if (mounted) {

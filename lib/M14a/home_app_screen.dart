@@ -11,19 +11,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String? _username;
+  String? _email;
 
   @override
   void initState() {
     super.initState();
-    _loadUsername();
+    _loadUserData();
   }
 
-  void _loadUsername() async {
+  void _loadUserData() async {
     // 1. Dapatkan instance SharedPreferences
     final prefs = await SharedPreferences.getInstance();
     // 2. Baca data username, jika tidak ada, beri nilai default 'Guest'
     setState(() {
       _username = prefs.getString('username') ?? 'Guest';
+      _email = prefs.getString('email') ?? 'email tidak ada';
     });
   }
 
@@ -49,9 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Center(
-        child: Text(
-          'Selamat Datang, ${_username ?? "memuat..."}!',
-          style: const TextStyle(fontSize: 24),
+        child: Column(
+          children: [
+            Text(
+              'Selamat Datang, ${_username ?? "memuat..."}!',
+              style: const TextStyle(fontSize: 24),
+            ),
+            Text(
+              'Email, ${_email ?? "memuat..."}!',
+              style: const TextStyle(fontSize: 24),
+            ),
+          ],
         ),
       ),
     );
