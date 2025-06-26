@@ -15,7 +15,10 @@ import 'package:flutter_app/M12a/toko2_screen.dart';
 import 'package:flutter_app/M13/news_detail_provider.dart';
 import 'package:flutter_app/M13/news_provider.dart';
 import 'package:flutter_app/M13/news_screen.dart';
+import 'package:flutter_app/M14a/signin_app_screen.dart';
+import 'package:flutter_app/M14b/rumah_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(
@@ -53,7 +56,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: NewsScreen(),
+      home: RumahScreen(),
     );
   }
 }

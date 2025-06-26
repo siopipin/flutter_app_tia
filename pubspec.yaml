@@ -12,10 +12,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  image_picker: ^1.1.2
   provider:
   http:
-  shared_preferences: ^2.2.2
+  shared_preferences: # tambahkan ini
 
 dev_dependencies:
   flutter_test:
