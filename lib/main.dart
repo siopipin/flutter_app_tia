@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/M07/kalkulator.dart';
 import 'package:flutter_app/M07/new_screen.dart';
@@ -18,10 +19,15 @@ import 'package:flutter_app/M13/news_screen.dart';
 import 'package:flutter_app/M14a/home_app_screen.dart';
 import 'package:flutter_app/M14a/signin_app_screen.dart';
 import 'package:flutter_app/M14b/rumah_screen.dart';
+import 'package:flutter_app/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_app/M15/book_provider.dart';
+import 'package:flutter_app/M15/book_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
       providers: [
@@ -35,6 +41,7 @@ void main() {
         // provider M13
         ChangeNotifierProvider(create: (context) => NewsProvider()),
         ChangeNotifierProvider(create: (context) => NewsDetailProvider()),
+        ChangeNotifierProvider(create: (context) => BookProvider()),
       ],
       child: const MyApp(),
     ),
@@ -80,7 +87,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: isUserNameValid ? HomeScreen() : SigninAppScreen(),
+      home: BookScreen(),
     );
   }
 }
